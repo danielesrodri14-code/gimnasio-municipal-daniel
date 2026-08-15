@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Programa de entrenamiento del Gimnasio Municipal dirigido por Daniel Rodríguez, Profesional en Cultura Física.">
+<title>Gimnasio Municipal | Daniel Rodríguez</title>
+<style>
+:root{
+  --bg:#07111f; --card:#101d2e; --card2:#142338; --text:#f5f7fb; --muted:#a9b5c5;
+  --green:#4ade80; --blue:#38bdf8; --orange:#fb923c; --red:#f87171; --line:#26384f;
+  --shadow:0 18px 50px rgba(0,0,0,.28); --radius:22px;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#07111f,#0b1525 50%,#07111f);color:var(--text)}
+a{color:inherit}.wrap{max-width:1180px;margin:auto;padding:0 20px}
+nav{position:sticky;top:0;z-index:20;background:rgba(7,17,31,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.navrow{height:70px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.brand{font-weight:900;letter-spacing:.3px}.brand span{color:var(--green)}
+.links{display:flex;gap:18px;font-size:14px;color:var(--muted)}.links a{text-decoration:none}
+.hero{padding:72px 0 46px}.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center}
+.kicker{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border:1px solid #31506b;border-radius:999px;color:#bfe8ff;background:#0c2235;font-size:13px}
+h1{font-size:clamp(40px,7vw,76px);line-height:.98;margin:18px 0 18px;letter-spacing:-2px}
+.hero p{font-size:18px;line-height:1.65;color:var(--muted);max-width:760px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+button,.btn{border:0;border-radius:14px;padding:13px 18px;font-weight:800;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.primary{background:var(--green);color:#052312}.secondary{background:#13263b;color:#e9f5ff;border:1px solid #29435f}
+.hero-card,.card{background:linear-gradient(145deg,var(--card2),var(--card));border:1px solid var(--line);box-shadow:var(--shadow);border-radius:var(--radius)}
+.hero-card{padding:24px}.statgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}.stat{padding:16px;border-radius:16px;background:#0b1726;border:1px solid #22354c}.stat b{display:block;font-size:27px}.stat small{color:var(--muted)}
+section{padding:42px 0}.section-title{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:20px}.section-title h2{font-size:32px;margin:0}.section-title p{margin:0;color:var(--muted);max-width:620px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.level{padding:22px;position:relative;overflow:hidden}.level h3{font-size:24px;margin:8px 0}.level p{color:var(--muted);line-height:1.55}.pill{display:inline-block;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:900}.adapt{background:#103021;color:#8ff0b0}.inter{background:#102e43;color:#87d8ff}.adv{background:#3a2013;color:#ffc08f}
+.mini{font-size:13px;color:var(--muted);margin-top:12px}
+.assessment{padding:24px}.q{padding:17px 0;border-bottom:1px solid var(--line)}.q:last-child{border:0}.q label{display:block;font-weight:800;margin-bottom:10px}
+select,input{width:100%;background:#091522;color:var(--text);border:1px solid #2b415b;border-radius:12px;padding:12px;font-size:15px}
+.result{margin-top:18px;padding:18px;border-radius:16px;background:#0a1828;border:1px solid #305170;display:none}.result strong{font-size:22px}
+.dashboard{display:grid;grid-template-columns:280px 1fr;gap:18px}.sidebar{padding:18px;height:max-content;position:sticky;top:88px}.sidebar button{width:100%;margin:6px 0;justify-content:flex-start;background:#0b1726;color:#dce8f5;border:1px solid #22354c}.sidebar button.active{outline:2px solid var(--green);background:#10281d}
+.workout{padding:24px}.workout-head{display:flex;justify-content:space-between;align-items:start;gap:12px;flex-wrap:wrap}.workout h3{font-size:27px;margin:0}.meta{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 18px}.tag{font-size:12px;background:#0b1726;border:1px solid #2a405a;padding:7px 9px;border-radius:999px;color:#c5d1df}
+.exercise{display:grid;grid-template-columns:1.6fr .6fr .7fr .8fr .5fr;gap:10px;align-items:center;padding:14px 0;border-top:1px solid var(--line)}.exercise:first-of-type{border-top:0}
+.exercise b{font-size:15px}.exercise span{color:#c2cedb;font-size:14px}.check{width:22px;height:22px;accent-color:var(--green)}
+.notice{padding:16px 18px;border:1px solid #5c4923;background:#2a2212;border-radius:14px;color:#ffe6a2;line-height:1.5}
+.progress-card{padding:22px}.bar{height:12px;background:#091522;border-radius:999px;overflow:hidden;border:1px solid #293b50}.bar>div{height:100%;width:0;background:linear-gradient(90deg,var(--green),var(--blue));transition:.3s}
+.library{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.lib{padding:18px}.lib h4{margin:5px 0 8px}.lib p{color:var(--muted);font-size:14px;line-height:1.5}
+.refs{font-size:14px;color:var(--muted);line-height:1.7}.refs a{color:#9ddcff}
+footer{padding:34px 0 55px;border-top:1px solid var(--line);color:var(--muted);margin-top:35px}
+.small{font-size:12px;color:var(--muted)}
+
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}
+.role-card{padding:22px;border-radius:20px;border:1px solid var(--line);background:linear-gradient(145deg,#112338,#0d1928);cursor:pointer;transition:.2s;box-shadow:var(--shadow)}
+.role-card:hover{transform:translateY(-3px);border-color:#4b6a8d}
+.role-card h3{margin:8px 0 6px;font-size:24px}
+.role-card p{margin:0;color:var(--muted);font-size:14px}
+.role-icon{font-size:34px}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.68);z-index:50;align-items:center;justify-content:center;padding:20px}
+.modal.show{display:flex}
+.modal-box{width:min(520px,100%);background:#0f1c2c;border:1px solid #30465f;border-radius:22px;padding:24px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.modal-head{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.close{background:#17273a;color:#dce8f5;padding:8px 12px;border-radius:10px}
+.admin-panel{display:none;padding:24px;margin-top:18px}
+.admin-panel.show{display:block}
+.admin-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+.admin-stat{background:#091522;border:1px solid #273d56;border-radius:14px;padding:16px}
+.admin-stat b{display:block;font-size:24px}
+@media(max-width:700px){.role-grid,.admin-grid{grid-template-columns:1fr}}
+
+@media(max-width:850px){.hero-grid,.dashboard{grid-template-columns:1fr}.grid3,.library{grid-template-columns:1fr}.links{display:none}.sidebar{position:static}.exercise{grid-template-columns:1fr 1fr}.exercise .name{grid-column:1/-1}}
+@media(max-width:520px){.hero{padding-top:42px}.hero-card{padding:18px}h1{font-size:44px}.exercise{grid-template-columns:1fr 1fr}.section-title{display:block}.section-title p{margin-top:8px}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="wrap navrow">
+    <div class="brand">GIMNASIO <span>MUNICIPAL</span></div>
+    <div class="links">
+      <a href="#niveles">Niveles</a><a href="#evaluacion">Evaluación</a><a href="#rutinas">Rutinas</a><a href="#biblioteca">Biblioteca</a><a href="#evidencia">Evidencia</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+<div class="wrap hero-grid">
+  <div>
+    <div class="kicker">🏋️ Entrenamiento progresivo basado en evidencia</div>
+    <h1>Entrena con propósito.<br>Progresa con método.</h1>
+    <p>Programa del Gimnasio Municipal diseñado para acompañar a usuarios en <b>adaptación, nivel intermedio y nivel avanzado</b>, con una estructura clara, progresiva y segura.</p>
+    <div class="role-grid">
+      <div class="role-card" onclick="openUser()">
+        <div class="role-icon">👤</div>
+        <h3>Soy usuario</h3>
+        <p>Ingresa con tu código personal para ver tu rutina, ejercicios y progreso.</p>
+      </div>
+      <div class="role-card" onclick="openAdmin()">
+        <div class="role-icon">🧑‍🏫</div>
+        <h3>Soy entrenador / administrador</h3>
+        <p>Acceso de Daniel Rodríguez para revisar usuarios, progreso y seguimiento.</p>
+      </div>
+    </div>
+    <div class="actions">
+      <a class="btn secondary" href="#evaluacion">Evaluación inicial</a>
+      <a class="btn secondary" href="#rutinas">Ver rutinas</a>
+    </div>
+    <p class="small">Dirección del programa: <b>Daniel Rodríguez · Profesional en Cultura Física</b></p>
+  </div>
+  <div class="hero-card">
+    <h3 style="margin-top:0">Tu entrenamiento de hoy</h3>
+    <p class="small">Selecciona tu nivel y sigue el plan. Marca cada ejercicio cuando lo completes.</p>
+    <div class="statgrid">
+      <div class="stat"><b>3</b><small>Niveles</small></div>
+      <div class="stat"><b>12</b><small>Semanas de referencia</small></div>
+      <div class="stat"><b>3–5</b><small>Días según nivel</small></div>
+      <div class="stat"><b>100%</b><small>Progresivo</small></div>
+    </div>
+    <div class="notice" style="margin-top:16px">⚠️ Antes de iniciar: si tienes dolor agudo, síntomas cardiopulmonares, lesión reciente o una condición médica no controlada, solicita valoración profesional.</div>
+  </div>
+</div>
+</header>
+
+
+<section id="admin" style="padding-top:10px">
+<div class="wrap">
+  <div id="adminPanel" class="card admin-panel">
+    <div class="section-title"><div><h2>Panel del entrenador</h2><p>Vista administrativa de Daniel Rodríguez. Esta versión muestra la estructura; la conexión con usuarios reales se hará con la base de datos.</p></div></div>
+    <div class="admin-grid">
+      <div class="admin-stat"><b>0</b><small>Usuarios registrados</small></div>
+      <div class="admin-stat"><b>0</b><small>Entrenamientos hoy</small></div>
+      <div class="admin-stat"><b>0%</b><small>Cumplimiento semanal</small></div>
+      <div class="admin-stat"><b>0</b><small>Evaluaciones pendientes</small></div>
+    </div>
+    <div class="notice" style="margin-top:16px">🔐 Este acceso es para el entrenador. En la versión conectada a base de datos aquí aparecerán los usuarios, sus rutinas, cargas, sesiones y progreso.</div>
+  </div>
+</div>
+</section>
+<section id="niveles">
+<div class="wrap">
+  <div class="section-title"><div><h2>Elige la etapa correcta</h2><p>No se clasifica únicamente por meses entrenando. Importan la técnica, la regularidad, la tolerancia al volumen y la capacidad de progresar.</p></div></div>
+  <div class="grid3">
+    <article class="card level"><span class="pill adapt">NIVEL 1</span><h3>Adaptación</h3><p>Para personas nuevas, que regresan tras una pausa o que todavía necesitan dominar patrones básicos.</p><div class="mini">3 días/semana · cuerpo completo · RIR 3–4 · técnica antes que carga</div></article>
+    <article class="card level"><span class="pill inter">NIVEL 2</span><h3>Intermedio</h3><p>Para usuarios regulares, con buena ejecución y capacidad de aumentar gradualmente volumen o carga.</p><div class="mini">4 días/semana · superior/inferior · RIR 2–3 · progresión registrada</div></article>
+    <article class="card level"><span class="pill adv">NIVEL 3</span><h3>Avanzado</h3><p>Para usuarios consistentes, técnicamente sólidos y capaces de manejar mayor especificidad e intensidad.</p><div class="mini">5 días/semana · especialización · RIR 1–3 · volumen controlado</div></article>
+  </div>
+</div>
+</section>
+
+<section id="evaluacion">
+<div class="wrap">
+  <div class="section-title"><div><h2>Evaluación inicial</h2><p>Esta orientación no sustituye una valoración profesional presencial, pero ayuda a ubicar al usuario en una etapa razonable.</p></div></div>
+  <div class="card assessment">
+    <div class="q"><label>1. ¿Cuánto tiempo llevas entrenando de forma continua?</label>
+      <select id="exp"><option value="0">Nunca / menos de 2 meses</option><option value="1">2–8 meses</option><option value="2">8–24 meses</option><option value="3">Más de 2 años</option></select>
+    </div>
+    <div class="q"><label>2. ¿Con qué regularidad entrenas?</label>
+      <select id="freq"><option value="0">Irregular o estoy comenzando</option><option value="1">2–3 días constantes</option><option value="2">4 días constantes</option><option value="3">5 o más días constantes</option></select>
+    </div>
+    <div class="q"><label>3. ¿Cómo calificas tu técnica en sentadilla, bisagra de cadera, empuje y jalón?</label>
+      <select id="tech"><option value="0">Aún no los domino</option><option value="1">Básica, necesito correcciones</option><option value="2">Buena y consistente</option><option value="3">Muy sólida, incluso con cargas altas</option></select>
+    </div>
+    <div class="q"><label>4. ¿Registras cargas/repeticiones y progresas de manera planificada?</label>
+      <select id="prog"><option value="0">No</option><option value="1">A veces</option><option value="2">Sí, de forma habitual</option><option value="3">Sí, y ajusto volumen/intensidad</option></select>
+    </div>
+    <button class="primary" onclick="clasificar()">Calcular nivel recomendado</button>
+    <div id="resultado" class="result"></div>
+  </div>
+</div>
+</section>
+
+<section id="rutinas">
+<div class="wrap">
+  <div class="section-title"><div><h2>Rutina del día</h2><p>Programas generales para adultos aparentemente sanos. El profesional puede adaptar ejercicios, cargas y volumen según valoración individual.</p></div></div>
+  <div class="dashboard">
+    <aside class="card sidebar">
+      <b>Selecciona nivel</b>
+      <button id="b-adapt" onclick="setLevel('adapt')">🟢 Adaptación · 3 días</button>
+      <button id="b-inter" onclick="setLevel('inter')">🔵 Intermedio · 4 días</button>
+      <button id="b-adv" onclick="setLevel('adv')">🔴 Avanzado · 5 días</button>
+      <hr style="border-color:#26384f;margin:14px 0">
+      <b>Día</b>
+      <div id="days"></div>
+    </aside>
+    <main>
+      <article class="card workout" id="workout"></article>
+      <article class="card progress-card" style="margin-top:16px">
+        <div style="display:flex;justify-content:space-between;gap:12px"><b>Progreso de la sesión</b><span id="pct">0%</span></div>
+        <div class="bar" style="margin-top:10px"><div id="bar"></div></div>
+        <p class="small">El progreso se guarda en este dispositivo.</p>
+      </article>
+    </main>
+  </div>
+</div>
+</section>
+
+<section id="biblioteca">
+<div class="wrap">
+  <div class="section-title"><div><h2>Biblioteca técnica</h2><p>Principios simples para entrenar mejor y reducir errores frecuentes.</p></div></div>
+  <div class="library">
+    <article class="card lib"><div>🎯</div><h4>RIR</h4><p>“Repeticiones en reserva”. RIR 2 significa terminar la serie sintiendo que todavía podrían hacerse aproximadamente dos repeticiones correctas.</p></article>
+    <article class="card lib"><div>📈</div><h4>Progresión</h4><p>Cuando completas el rango superior con técnica estable y el RIR objetivo, aumenta ligeramente la carga en la siguiente sesión.</p></article>
+    <article class="card lib"><div>⏱️</div><h4>Descanso</h4><p>Los movimientos multiarticulares suelen necesitar más recuperación que los ejercicios accesorios. No recortes el descanso si deteriora la técnica.</p></article>
+    <article class="card lib"><div>🧠</div><h4>Técnica</h4><p>La carga debe permitir control del movimiento. Si la técnica cambia de forma evidente, reduce peso, repeticiones o termina la serie.</p></article>
+    <article class="card lib"><div>❤️</div><h4>Cardio</h4><p>Complementa la fuerza con actividad aeróbica semanal. La OMS recomienda 150–300 min moderados o 75–150 min vigorosos para adultos.</p></article>
+    <article class="card lib"><div>😴</div><h4>Recuperación</h4><p>La adaptación ocurre entre sesiones. El plan debe permitir recuperar rendimiento, sueño y sensación general antes de elevar el volumen.</p></article>
+  </div>
+</div>
+</section>
+
+<section id="evidencia">
+<div class="wrap">
+  <div class="section-title"><div><h2>Base científica</h2><p>El programa se inspira en recomendaciones internacionales y literatura científica; no reemplaza valoración médica ni prescripción individual.</p></div></div>
+  <div class="card" style="padding:22px">
+    <div class="refs">
+      <p><b>American College of Sports Medicine (ACSM), 2026.</b> <i>Resistance Training Prescription for Muscle Function, Hypertrophy, and Physical Performance in Healthy Adults: An Overview of Reviews.</i> La actualización sintetiza 137 revisiones y más de 30.000 participantes.</p>
+      <p><b>World Health Organization (WHO).</b> <i>Guidelines on physical activity and sedentary behaviour.</i> Recomendaciones globales de actividad aeróbica y fortalecimiento muscular.</p>
+      <p><b>National Strength and Conditioning Association (NSCA).</b> Position statements y estándares profesionales sobre entrenamiento de fuerza y acondicionamiento.</p>
+      <p class="small">Criterio profesional: Daniel Rodríguez · Profesional en Cultura Física. Las rutinas son una guía general y deben modificarse cuando la evaluación individual lo indique.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<div id="userModal" class="modal">
+  <div class="modal-box">
+    <div class="modal-head"><h2 style="margin:0">👤 Acceso de usuario</h2><button class="close" onclick="closeModal('userModal')">✕</button></div>
+    <p style="color:var(--muted)">Ingresa tu código personal. En esta demostración puedes usar <b>USUARIO01</b>.</p>
+    <input id="userCode" placeholder="Ejemplo: USUARIO01">
+    <button class="primary" style="width:100%;margin-top:12px" onclick="loginUser()">Entrar a mi entrenamiento</button>
+    <div id="userMsg" class="result"></div>
+  </div>
+</div>
+<div id="adminModal" class="modal">
+  <div class="modal-box">
+    <div class="modal-head"><h2 style="margin:0">🧑‍🏫 Acceso entrenador</h2><button class="close" onclick="closeModal('adminModal')">✕</button></div>
+    <p style="color:var(--muted)">Acceso de Daniel Rodríguez. En esta demostración usa el código <b>DANIEL2026</b>.</p>
+    <input id="adminCode" type="password" placeholder="Código de administrador">
+    <button class="primary" style="width:100%;margin-top:12px" onclick="loginAdmin()">Entrar al panel</button>
+    <div id="adminMsg" class="result"></div>
+  </div>
+</div>
+
+<footer>
+<div class="wrap">
+  <b style="color:white">Gimnasio Municipal</b><br>
+  Programa de entrenamiento y bienestar · Daniel Rodríguez, Profesional en Cultura Física.
+  <div class="small" style="margin-top:10px">© 2026 · Uso educativo y comunitario.</div>
+</div>
+</footer>
+
+<script>
+const plans = {
+adapt: [
+ {title:"Día A · Base general", focus:"Cuerpo completo", duration:"45–55 min", rir:"RIR 3–4", note:"Prioridad absoluta: aprender técnica. Comienza con 5–8 min de movilidad y actividad aeróbica suave.",
+ ex:[["Prensa de piernas","2–3","12–15","75–90 s"],["Press de pecho en máquina","2–3","10–15","75–90 s"],["Jalón al pecho","2–3","10–15","75–90 s"],["Curl femoral","2","12–15","60–75 s"],["Remo sentado","2","12–15","60–75 s"],["Plancha","2–3","20–35 s","45–60 s"]]},
+ {title:"Día B · Control y estabilidad", focus:"Cuerpo completo", duration:"45–55 min", rir:"RIR 3–4", note:"Deja al menos un día de recuperación entre sesiones cuando sea posible.",
+ ex:[["Sentadilla a banco / goblet","2–3","10–12","75–90 s"],["Press hombro en máquina","2–3","10–12","75 s"],["Remo en polea","2–3","10–12","75 s"],["Puente de glúteo","2–3","12–15","60–75 s"],["Face pull","2","12–15","60 s"],["Dead bug","2–3","8–10/lado","45 s"]]},
+ {title:"Día C · Consolidación", focus:"Cuerpo completo", duration:"45–60 min", rir:"RIR 3", note:"Si completas el máximo de repeticiones con buena técnica durante dos sesiones, aumenta la carga de forma pequeña.",
+ ex:[["Prensa / sentadilla guiada","3","10–12","90 s"],["Press inclinado con mancuernas","2–3","10–12","75–90 s"],["Jalón neutro","2–3","10–12","75–90 s"],["Peso muerto rumano ligero","2–3","10–12","90 s"],["Elevación lateral","2","12–15","60 s"],["Pallof press","2–3","10/lado","45–60 s"]]}
+],
+inter:[
+ {title:"Día 1 · Superior A",focus:"Torso",duration:"60–70 min",rir:"RIR 2–3",note:"Utiliza técnica estable y registra cargas/repeticiones.",ex:[["Press banca / máquina","3–4","6–10","2 min"],["Remo sentado / barra","3–4","8–12","90–120 s"],["Press hombro","3","8–12","90 s"],["Jalón al pecho","3","8–12","90 s"],["Elevación lateral","2–3","12–15","60 s"],["Curl bíceps","2–3","10–15","60 s"],["Extensión tríceps","2–3","10–15","60 s"]]},
+ {title:"Día 2 · Inferior A",focus:"Pierna",duration:"60–70 min",rir:"RIR 2–3",note:"No sacrifiques rango o control para aumentar la carga.",ex:[["Sentadilla / hack","3–4","6–10","2–3 min"],["Peso muerto rumano","3","8–10","2 min"],["Prensa","3","10–12","90 s"],["Curl femoral","3","10–15","75 s"],["Pantorrilla","3","10–15","60–75 s"],["Plancha con carga opcional","3","30–45 s","60 s"]]},
+ {title:"Día 3 · Superior B",focus:"Torso",duration:"60–70 min",rir:"RIR 2",note:"Cambia el ángulo, no el objetivo. Mantén equilibrio entre empujes y jalones.",ex:[["Press inclinado","3–4","8–12","90–120 s"],["Dominada asistida / jalón","3–4","8–12","90–120 s"],["Remo unilateral","3","8–12/lado","90 s"],["Press hombro mancuernas","3","8–12","90 s"],["Apertura / peck deck","2–3","12–15","60 s"],["Curl martillo","2–3","10–15","60 s"],["Tríceps cuerda","2–3","10–15","60 s"]]},
+ {title:"Día 4 · Inferior B",focus:"Pierna",duration:"60–70 min",rir:"RIR 2",note:"Busca progresión gradual, no récords semanales.",ex:[["Peso muerto variante / hip thrust","3–4","6–10","2–3 min"],["Sentadilla goblet / frontal","3","8–12","2 min"],["Zancada","3","8–12/lado","90 s"],["Extensión de rodilla","2–3","12–15","60–75 s"],["Curl femoral","2–3","12–15","60–75 s"],["Pallof press","3","10–12/lado","60 s"]]}
+],
+adv:[
+ {title:"Día 1 · Push",focus:"Pecho · hombro · tríceps",duration:"70–80 min",rir:"RIR 1–3",note:"El fallo muscular no es obligatorio. Mantén margen en los ejercicios de mayor riesgo técnico.",ex:[["Press banca","4","4–8","2–3 min"],["Press inclinado mancuerna","3","6–10","2 min"],["Press militar","3","6–10","2 min"],["Apertura en polea","3","10–15","60–90 s"],["Elevación lateral","3–4","12–20","60 s"],["Extensión tríceps","3","8–15","60–90 s"]]},
+ {title:"Día 2 · Pull",focus:"Espalda · bíceps",duration:"70–80 min",rir:"RIR 1–3",note:"Controla fatiga lumbar al combinar bisagras y remos libres.",ex:[["Dominada / jalón pesado","4","5–8","2–3 min"],["Remo pecho apoyado","4","6–10","2 min"],["Jalón unilateral","3","8–12","90 s"],["Remo en polea","3","10–12","90 s"],["Face pull","3","12–20","60 s"],["Curl bíceps","3–4","8–15","60–90 s"]]},
+ {title:"Día 3 · Legs",focus:"Pierna completa",duration:"75–85 min",rir:"RIR 1–3",note:"Distribuye la intensidad. No conviertas todos los ejercicios en series máximas.",ex:[["Sentadilla / hack","4","4–8","2–3 min"],["Peso muerto rumano","3–4","6–10","2–3 min"],["Prensa","3","8–12","2 min"],["Curl femoral","3","8–15","75–90 s"],["Extensión de rodilla","3","10–15","75 s"],["Pantorrilla","4","8–15","60–90 s"]]},
+ {title:"Día 4 · Superior",focus:"Hipertrofia torso",duration:"70–80 min",rir:"RIR 1–2",note:"Sesión de volumen. Reduce series si el rendimiento cae de forma marcada.",ex:[["Press inclinado","3","8–12","90–120 s"],["Remo máquina","3","8–12","90–120 s"],["Press pecho máquina","3","10–15","90 s"],["Jalón al pecho","3","10–15","90 s"],["Elevación lateral","4","12–20","60 s"],["Curl + tríceps","3","10–15","60 s"]]},
+ {title:"Día 5 · Inferior",focus:"Hipertrofia pierna",duration:"70–80 min",rir:"RIR 1–2",note:"Finaliza la semana priorizando estímulo con ejecución limpia.",ex:[["Hip thrust","4","6–10","2 min"],["Sentadilla frontal / goblet pesada","3","8–12","2 min"],["Zancada / búlgara","3","8–12/lado","90 s"],["Curl femoral","3","10–15","75 s"],["Extensión rodilla","3","12–15","75 s"],["Pantorrilla","4","12–20","60 s"],["Core a elección","3","8–15","60 s"]]}
+]};
+
+let currentLevel = localStorage.getItem("gm_level") || "adapt";
+let currentDay = +(localStorage.getItem("gm_day") || 0);
+
+function setLevel(level){
+ currentLevel=level; currentDay=0;
+ localStorage.setItem("gm_level",level);
+ localStorage.setItem("gm_day",0);
+ render();
+}
+function setDay(i){currentDay=i;localStorage.setItem("gm_day",i);renderWorkout();renderDays();}
+function renderDays(){
+ const d=document.getElementById("days"); d.innerHTML="";
+ plans[currentLevel].forEach((x,i)=>{let b=document.createElement("button");b.textContent=x.title.split("·")[0]; if(i===currentDay)b.classList.add("active");b.onclick=()=>setDay(i);d.appendChild(b)})
+ ["adapt","inter","adv"].forEach(x=>document.getElementById("b-"+x).classList.toggle("active",x===currentLevel));
+}
+function renderWorkout(){
+ const w=plans[currentLevel][currentDay] || plans[currentLevel][0];
+ const key=`done_${currentLevel}_${currentDay}`;
+ let done=JSON.parse(localStorage.getItem(key)||"[]");
+ let rows=w.ex.map((e,i)=>`<div class="exercise">
+   <div class="name"><b>${e[0]}</b></div><span><b>${e[1]}</b> series</span><span><b>${e[2]}</b> reps</span><span>Desc. ${e[3]}</span>
+   <input class="check" aria-label="marcar ejercicio" type="checkbox" ${done.includes(i)?"checked":""} onchange="toggleDone(${i})"></div>`).join("");
+ document.getElementById("workout").innerHTML=`<div class="workout-head"><div><h3>${w.title}</h3><div class="meta"><span class="tag">${w.focus}</span><span class="tag">⏱ ${w.duration}</span><span class="tag">${w.rir}</span></div></div></div><div class="notice">${w.note}</div><div style="margin-top:16px">${rows}</div><p class="small">Calentamiento: 5–10 min de actividad general + series de aproximación en los ejercicios principales. Finaliza con recuperación gradual.</p>`;
+ updateProgress();
+}
+function toggleDone(i){
+ const key=`done_${currentLevel}_${currentDay}`; let done=JSON.parse(localStorage.getItem(key)||"[]");
+ done=done.includes(i)?done.filter(x=>x!==i):[...done,i]; localStorage.setItem(key,JSON.stringify(done));updateProgress();
+}
+function updateProgress(){
+ const key=`done_${currentLevel}_${currentDay}`;let done=JSON.parse(localStorage.getItem(key)||"[]");const total=plans[currentLevel][currentDay].ex.length;
+ const p=Math.round(done.length/total*100);document.getElementById("pct").textContent=p+"%";document.getElementById("bar").style.width=p+"%";
+}
+function render(){renderDays();renderWorkout();}
+function clasificar(){
+ const score=["exp","freq","tech","prog"].reduce((s,id)=>s+(+document.getElementById(id).value),0);
+ let level,title,desc;
+ if(score<=4){level="adapt";title="🟢 ADAPTACIÓN";desc="Conviene construir técnica, tolerancia al entrenamiento y regularidad antes de aumentar la complejidad."}
+ else if(score<=8){level="inter";title="🔵 INTERMEDIO";desc="Ya puedes trabajar con una división superior/inferior, registrar progresiones y manejar más volumen."}
+ else{level="adv";title="🔴 AVANZADO";desc="Tu experiencia declarada es compatible con programación más específica. La clasificación final debe confirmarse mediante observación técnica y rendimiento."}
+ const r=document.getElementById("resultado");r.style.display="block";r.innerHTML=`<strong>${title}</strong><p>${desc}</p><button class="primary" onclick="setLevel('${level}');location.hash='#rutinas'">Abrir mi rutina</button>`;
+}
+
+function openUser(){
+  document.getElementById('userModal').classList.add('show');
+}
+function openAdmin(){
+  document.getElementById('adminModal').classList.add('show');
+}
+function closeModal(id){
+  document.getElementById(id).classList.remove('show');
+}
+function loginUser(){
+  const code=(document.getElementById('userCode').value||'').trim().toUpperCase();
+  const msg=document.getElementById('userMsg');
+  msg.style.display='block';
+  if(code==='USUARIO01'){
+    msg.innerHTML='<strong>✅ Bienvenido</strong><p>Acceso correcto. Te llevamos a tu rutina de hoy.</p>';
+    setTimeout(function(){
+      closeModal('userModal');
+      location.hash='#rutinas';
+    },300);
+  } else {
+    msg.innerHTML='<strong>⚠️ Código no reconocido</strong><p>Para esta demostración usa: <b>USUARIO01</b></p>';
+  }
+}
+function loginAdmin(){
+  const code=(document.getElementById('adminCode').value||'').trim().toUpperCase();
+  const msg=document.getElementById('adminMsg');
+  msg.style.display='block';
+  if(code==='DANIEL2026'){
+    msg.innerHTML='<strong>✅ Acceso autorizado</strong><p>Bienvenido, Daniel Rodríguez.</p>';
+    document.getElementById('adminPanel').classList.add('show');
+    setTimeout(function(){
+      closeModal('adminModal');
+      location.hash='#admin';
+    },300);
+  } else {
+    msg.innerHTML='<strong>⛔ Acceso denegado</strong><p>Revisa el código de administrador.</p>';
+  }
+}
+
+render();
+</script>
+</body>
+</html>
